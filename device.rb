@@ -16,7 +16,11 @@ class Device
     res = "#{array[0]}:#{array[1]}:#{array[2]}:#{array[3]}:#{array[4]}:XX"
     return res
   end
-  
+
+  # Pas besoin de getter for mac/time/ss/vendor/get_time/get_ssids, tu peux juster
+  # accéder les propriétées en décrivant les accessors :
+  # attr_reader :mac, :time, :ss, :vendor, :time, :ssids
+  # https://stackoverflow.com/questions/4370960/what-is-attr-accessor-in-ruby
   def mac
     @mac
   end
