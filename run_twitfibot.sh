@@ -5,6 +5,7 @@
 wlan_interface="wlan0"  # may need to be changed on some configuration
 
 
+# Check la valeur de retour de iwconfig (0 -> no prob, != 0 -> ooops)
 if iwconfig mon0 2>&1 | grep -q "No such device"
 then 
    echo "Starting monitoring interface"

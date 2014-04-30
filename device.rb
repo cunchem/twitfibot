@@ -11,6 +11,7 @@ class Device
     @vendor = lookup_vendor(@mac)
   end
   def anonymizeMac(mac)
+    # Anonymize MOAR? :)
     array = mac.split(':')
     res = "#{array[0]}:#{array[1]}:#{array[2]}:#{array[3]}:#{array[4]}:XX"
     return res
@@ -46,6 +47,8 @@ class Device
   
   # part of this function come from zizap ouilookup code  https://github.com/zipizap/ouilookup
   def lookup_vendor(mac)
+    # Peut être charger le fichier au démarrage, le parser et
+    # contruire une table de hash pour avoir des lookup o(1)
     local_oui_content = File.read(LOCAL_OUI_FILE_PATH) #,mode:"r:UTF-8")            # read LOCAL_OUI_FILE_PATH
     #local_oui_content.encode!('UTF-8','UTF-8',:invalid => :replace)       
     mac = mac.upcase
@@ -69,7 +72,13 @@ class Device
       return true
     end
   end
-  def display  
+
+  # Généralement les gens écrivent une méthode to_string() et qui
+  # retourne juste une string quand tu appelles print/puts sur un
+  # objet.
+  # Le print/puts est appelé en dehors de la classe :
+  # puts device
+  def display
     print "#{@vendor}| #{@mac} | #{@ss} dB | #{@ssids.size} | "
     sep=''
     @ssids.each do |ssid| print "#{sep}'#{ssid}'" 

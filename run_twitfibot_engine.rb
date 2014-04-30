@@ -6,6 +6,9 @@ require "./twitfibot"
 #access_token        = "102025640-sOy8igwLVKHbe3uoIbvKjcNKOskLEyQM66VASAl0"
 #access_token_secret = "XwOxVt4fBBVnFtGKwjzUwNYKl3ndHGqdIcnpV7AcpxDmP"
 # @twitfibot
+
+# Tu veux surement cacher ces clées :
+
 consumer_key        = "SNWOM3KCviH4F9vt6ZO9Pdzda"
 consumer_secret     = "83x15lOWIaOn6abnD1M4zZf2mAkOfjfSpb6PO39yILzWvgmKIz"
 access_token        = "2464572090-xIhuY5vdMdGvebxs0ZFussya4flwqEL5b72WBTg"
