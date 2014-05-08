@@ -4,7 +4,7 @@ VENDOR_STR_LENGTH=30
 class Device    
   def initialize( time, sa, da, ss, ssid)  
     # Instance variables  
-    @mac =   sa
+    @mac =   sa.upcase
     @time = time
     @ss =   ss
     @ssids = [ssid]
@@ -16,11 +16,17 @@ class Device
     return res
   end
   
-  def mac
+  def macmac
     @mac
   end
   def macanon
     anonymizeMac(@mac)
+  end
+
+  def shortName
+    shortVendor=@vendor.split(' ')[0]
+    array = @mac.split(':')
+    return shortVendor + "_#{array[3]}#{array[4]}XX"
   end
   def time 
     @time

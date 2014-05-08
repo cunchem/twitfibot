@@ -5,6 +5,7 @@ class DevicePool
     @devices=[]
     @timeout=120
   end
+  
   def cleanUp()
     t = Time.now
     
@@ -26,14 +27,17 @@ class DevicePool
     end
     return nil
   end
+  
   def leavingDeviceEvent(device)
-    return "Leaving device #{device.macanon} #{device.vendor}. Bye bye." 
-  end
+    #return "Leaving device #{device.macanon} #{device.vendor}. Bye bye." 
+    return "Leaving device #{device.shortName}. Bye bye"
+end
   def newDeviceEvent(device) 
-    return "Hello new device #{device.macanon} #{device.vendor}"
+    #return "Hello new device #{device.macanon} #{device.vendor}"
+    return "Hello new device #{device.shortName}"
   end
   def newSsidEvent(device,ssid)
-    return "New SSID #{ssid} for device #{device.macanon} #{device.vendor}"
+    return "New SSID #{ssid} for device #{device.shortName}"
   end
   def update(time, sa, da, ss, ssid)
     events = []
