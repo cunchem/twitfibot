@@ -29,11 +29,9 @@ class DevicePool
   end
   
   def leavingDeviceEvent(device)
-    #return "Leaving device #{device.macanon} #{device.vendor}. Bye bye." 
     return "Leaving device #{device.shortName}. Bye bye"
-end
+  end
   def newDeviceEvent(device) 
-    #return "Hello new device #{device.macanon} #{device.vendor}"
     return "Hello new device #{device.shortName}"
   end
   def newSsidEvent(device,ssid)
