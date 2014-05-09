@@ -1,7 +1,9 @@
 LOCAL_OUI_FILE_PATH = "./oui.txt"
 VENDOR_STR_LENGTH=30
 
-class Device    
+class Device  
+
+  attr_reader :mac, :time, :ss, :ssids, :vendor
   def initialize( time, sa, da, ss, ssid)  
     # Instance variables  
     @mac =   sa.upcase
@@ -15,10 +17,6 @@ class Device
     res = "#{array[0]}:#{array[1]}:#{array[2]}:#{array[3]}:#{array[4]}:XX"
     return res
   end
-  
-  def macmac
-    @mac
-  end
   def macanon
     anonymizeMac(@mac)
   end
@@ -27,18 +25,6 @@ class Device
     shortVendor=@vendor.split(' ')[0]
     array = @mac.split(':')
     return shortVendor + "_#{array[3]}#{array[4]}XX"
-  end
-  def time 
-    @time
-  end
-  def ss
-    @ss
-  end
-  def ssids
-    @ssids
-  end
-  def vendor
-    @vendor
   end
   def nbssids
     n =0
@@ -75,14 +61,15 @@ class Device
       return true
     end
   end
-  def display  
-    print "#{@vendor}| #{@mac} | #{@ss} dB | #{@ssids.size} | "
+  def to_s
+    s = "#{@vendor}| #{@mac} | #{@ss} dB | #{@ssids.size} | "
     sep=''
-    @ssids.each do |ssid| print "#{sep}'#{ssid}'" 
-    sep=','
+    @ssids.each do |ssid| s += "#{sep}'#{ssid}'" 
+      sep=','
     end
-    puts
-  end  
+    return s
+  end
+  
   def is_blind()
     if(@ssids.length==1 && @ssids[0]=='')   then 
       return true
