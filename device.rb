@@ -6,7 +6,7 @@ class Device
   attr_reader :mac, :time, :ss, :ssids, :vendor
   def initialize( time, sa, da, ss, ssid)  
     # Instance variables  
-    @mac =   sa.upcase
+    @mac =   sa
     @time = time
     @ss =   ss
     @ssids = [ssid]
@@ -22,9 +22,14 @@ class Device
   end
 
   def shortName
-    shortVendor=@vendor.split(' ')[0]
     array = @mac.split(':')
-    return shortVendor + "_#{array[3]}#{array[4]}XX"
+    if (@vendor != '') then 
+      shortVendor=@vendor.split(' ')[0]
+      sname = shortVendor + "_#{array[3]}:#{array[4]}:XX"
+    else
+      sname = macanon
+    end
+    return sname
   end
   def nbssids
     n =0
@@ -40,7 +45,7 @@ class Device
   def lookup_vendor(mac)
     local_oui_content = File.read(LOCAL_OUI_FILE_PATH) #,mode:"r:UTF-8")            # read LOCAL_OUI_FILE_PATH
     #local_oui_content.encode!('UTF-8','UTF-8',:invalid => :replace)       
-    mac = mac.upcase
+    mac = mac
     mac_prefix = mac[0,8]                                         # "00:1A:22"
     
     mac_prefix_normalized = mac_prefix.gsub(':','-')              # "00-1A-22"

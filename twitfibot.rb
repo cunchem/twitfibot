@@ -70,8 +70,8 @@ class Twitfibot
   def parse_line(line)
     array = line.split(';')
     time = Time.parse(array[0])
-    sa = array[1]
-    da= array[2]
+    sa = array[1].upcase
+    da= array[2].upcase
     ss = array[3]
     ssid = array[4].chomp
     if(ss == '') then 
